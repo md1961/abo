@@ -30,19 +30,5 @@ class BloodTypeGenePair:
         self.genes = tuple(sorted([gene0, gene1]))
         self.blood_type = BloodType.of(self)
 
-    @classmethod
-    def create_from_gene_str(cls, gene_str):
-        genes = map(lambda s: BloodTypeGene[s], list(gene_str))
-        return cls(*genes)
-
     def __str__(self):
         return ''.join(map(str, self.genes))
-
-
-if __name__ == '__main__':
-    str_genes = list('ABO')
-    for g1 in str_genes:
-        for g2 in str_genes:
-            gene_pair = BloodTypeGenePair.create_from_gene_str(g1 + g2)
-            blood_type = BloodType.of(gene_pair)
-            print(f'{g1} & {g2}  =>  {blood_type}')
